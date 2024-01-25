@@ -15,5 +15,28 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+
+
+    public static final class IntakeAndRampConstants{
+        public final static int intakeMotorID = 1;
+        public final static int rampMotorID = 2;
+
+        public final static double thresholdVelocityforRamp = 0;
+        public final static double beamBreakSensorID = 0;
+
+    }
+
+    public static final class ShooterConstants{
+        public final static int leftMotorID = 13;
+        public final static int rightMotorID = 14;
+
+        public final static double proportialPIDConstant = 0;
+        public final static double integralPIDConstant = 0;
+        public final static double derivativePIDConstant = 0;
+        public final static double leftFeedForwardPIDConstant = 0;
+        public final static double rightFeedForwardPIDConstant = 0;
+        public final static double minPIDOutput = 0;
+        public final static double maxPIDOutput = 0;
+        public final static double velocityPIDTolerance;
   }
 }
