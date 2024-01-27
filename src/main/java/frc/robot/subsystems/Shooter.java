@@ -11,16 +11,14 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.Constants.OperatorConstants.IntakeAndRampConstants;
-import frc.robot.Constants.OperatorConstants.ShooterConstants;
+import frc.robot.Constants.ShooterConstants;
 
 
 public class Shooter extends SubsystemBase {
     
 
-    CANSparkMax leftMotor = new CANSparkMax(OperatorConstants.ShooterConstants.leftMotorID, MotorType.kBrushless);
-    CANSparkMax rightMotor = new CANSparkMax(OperatorConstants.ShooterConstants.rightMotorID, MotorType.kBrushless);
+    CANSparkMax leftMotor = new CANSparkMax(Constants.ShooterConstants.leftMotorID, MotorType.kBrushless);
+    CANSparkMax rightMotor = new CANSparkMax(Constants.ShooterConstants.rightMotorID, MotorType.kBrushless);
 
     RelativeEncoder leftEncoder = leftMotor.getEncoder();
     RelativeEncoder rightEncoder = rightMotor.getEncoder();
@@ -93,52 +91,12 @@ public class Shooter extends SubsystemBase {
         return average;
       }
     
-      // For the target velocity
-      public boolean isOnTarget() {
-        boolean leftOnTarget = Math.abs(targetVelocity - leftEncoder.getVelocity()) <= ShooterConstants.velocityPIDTolerance;
-        boolean rightOnTarget = Math.abs(targetVelocity - rightEncoder.getVelocity()) <= ShooterConstants.velocityPIDTolerance;
-        return (rightOnTarget && leftOnTarget);
-      }
-    
-      public boolean isOnTargetAverage(int percent) {
-        if(percent > 10) {
-          percent = 10;
-        } else if(percent < 0) {
-          percent = 0;
-        }
-    
-        if(rollingAvg >= percent) {
-          return true;
-        }
-        return false;
-      }
-    
-      public static double distanceToVelocity(double distance) {
-        //TODO tune distance convertion 
-        return 0.0;
-      }
 
     
-      @Override
-      public void periodic() {
-        if (isOnTarget()) {
-          if(rollingAvg < 10) {
-            rollingAvg++;
-          }
-        } else if(rollingAvg > 0) {
-          if(rollingAvg > 0) {
-            rollingAvg--;
-          }
-        }
-    
-    
-        SmartDashboard.putNumber("Left Velocity", leftEncoder.getVelocity());
-        SmartDashboard.putNumber("Right Velocity", rightEncoder.getVelocity());
-        SmartDashboard.putNumber("Average Velocity", getVelocity());
-        SmartDashboard.putBoolean("Launcher On Target", isOnTarget());
-        SmartDashboard.putBoolean("Avg Launcher On Target", isOnTargetAverage(7));
-        SmartDashboard.putNumber("Target Velocity", targetVelocity);
-        // This method will be called once per scheduler run
-      }
 
-}
+
+    
+  
+        
+    
+      }
