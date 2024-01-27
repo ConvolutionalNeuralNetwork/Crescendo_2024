@@ -6,12 +6,11 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.Constants.OperatorConstants.IntakeAndRampConstants;
+import frc.robot.Constants.IntakeAndRampConstants;
 
 
 public class IntakeAndRamp extends SubsystemBase {
-    
+
 
     CANSparkMax intakeMotor= new CANSparkMax(IntakeAndRampConstants.intakeMotorID, MotorType.kBrushless);
     CANSparkMax rampMotor = new CANSparkMax(IntakeAndRampConstants.rampMotorID, MotorType.kBrushless);
@@ -30,8 +29,8 @@ public class IntakeAndRamp extends SubsystemBase {
         intakeEncoder.setPosition(0);
         rampEncoder.setPosition(0);
 
-        intakeMotor.follow(intakeMotor);
-        rampMotor.follow(rampMotor);
+        // intakeMotor.follow(intakeMotor);
+        // rampMotor.follow(rampMotor);
 
     }
 
